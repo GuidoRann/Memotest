@@ -19,6 +19,7 @@ const IMG = [
 export default function Board() {
   const [selected, setSelected] = useState<String[]>([]);
   const [guessed, setGuessed] = useState<String[]>([]);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   useEffect(() => {
     if (selected.length === 2) {
@@ -37,8 +38,12 @@ export default function Board() {
     }
   }, [guessed]);
 
+  const handleFlip = () => {
+    setIsActive(!isActive);
+  };
+
   return (
-    <div className="h-screen flex flex-col gap-5 items-center">
+    <div className="h-screen flex flex-col gap-5 items-center bg-[url('/src/images/fondo/magic.png')] bg-cover">
       <Navbar />
       <div className="w-2/5 flex flex-col bg-yellow-100 items-center rounded-xl p-2">
         <ul className="grid grid-cols-5 gap-2 rounded-md ">
@@ -52,12 +57,13 @@ export default function Board() {
                   selected.length < 2 &&
                   setSelected((selected) => selected.concat(image))
                 }
+                className="[transform-style: preserve-3d] transition-all duration-500"
               >
                 {selected.includes(image) || guessed.includes(image) ? (
-                  <img className="max-w-full h-auto" alt="icon" src={url} />
+                  <img className={`max-w-full h-auto`} alt="icon" src={url} />
                 ) : (
                   <img
-                    className="max-w-full cursor-pointer h-auto "
+                    className={`max-w-full cursor-pointer h-auto ${selected ? "" : "rotate-[180deg]"}`}
                     alt="icon"
                     src="/src/images/cartas/oculto.png"
                   />

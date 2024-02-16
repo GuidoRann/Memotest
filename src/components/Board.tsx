@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 
 const IMG = [
-  "/src/images/cristal.png",
-  "/src/images/daga.png",
-  "/src/images/flechas.png",
-  "/src/images/hongo.png",
-  "/src/images/llave.png",
-  "/src/images/mano.png",
-  "/src/images/monedas.png",
-  "/src/images/pocion.png",
-  "/src/images/polilla.png",
-  "/src/images/sol.png",
+  "/src/images/cartas/cristal.png",
+  "/src/images/cartas/daga.png",
+  "/src/images/cartas/flechas.png",
+  "/src/images/cartas/hongo.png",
+  "/src/images/cartas/llave.png",
+  "/src/images/cartas/mano.png",
+  "/src/images/cartas/monedas.png",
+  "/src/images/cartas/pocion.png",
+  "/src/images/cartas/polilla.png",
+  "/src/images/cartas/sol.png",
 ]
   .flatMap((image) => [`a|${image}`, `b|${image}`])
-  .sort(() => Math.random() - 0.7);
+  .sort(() => Math.random() - 0.5);
 
 export default function Board() {
   const [selected, setSelected] = useState<String[]>([]);
@@ -40,7 +40,7 @@ export default function Board() {
   return (
     <div className="h-screen flex flex-col gap-5 items-center">
       <Navbar />
-      <div className="w-2/5 flex flex-col items-center rounded-lg p-2 bg-slate-800">
+      <div className="w-2/5 flex flex-col bg-yellow-100 items-center rounded-xl p-2">
         <ul className="grid grid-cols-5 gap-2 rounded-md ">
           {IMG.map((image) => {
             const [, url] = image.split("|");
@@ -57,9 +57,9 @@ export default function Board() {
                   <img className="max-w-full h-auto" alt="icon" src={url} />
                 ) : (
                   <img
-                    className="max-w-full h-auto"
+                    className="max-w-full cursor-pointer h-auto "
                     alt="icon"
-                    src="/src/images/oculto.png"
+                    src="/src/images/cartas/oculto.png"
                   />
                 )}
               </li>
@@ -68,9 +68,9 @@ export default function Board() {
         </ul>
       </div>
       <button
-        className="cursor-pointer text-white font-bold relative text-[14px] w-[9em] h-[3em] text-center bg-gradient-to-r from-violet-500 from-10% via-sky-500 via-30% to-pink-500 to-90% bg-[length:400%] rounded-[30px] z-10 hover:animate-gradient-xy hover:bg-[length:100%] before:content-[''] before:absolute before:-top-[5px] before:-bottom-[5px] before:-left-[5px] before:-right-[5px] before:bg-gradient-to-r before:from-violet-500 before:from-10% before:via-sky-500 before:via-30% before:to-pink-500 before:bg-[length:400%] before:-z-10 before:rounded-[35px] before:hover:blur-xl before:transition-all before:ease-in-out before:duration-[1s] before:hover:bg-[length:10%] active:bg-violet-700 focus:ring-violet-700 my-4"
+        className="flex items-center bg-blue-500 text-white gap-1 px-4 py-2 cursor-pointer font-semibold tracking-widest rounded-md hover:bg-blue-400 duration-300 hover:gap-2 hover:translate-x-3"
         onClick={() => {
-          setGuessed([]);
+          location.reload();
         }}
       >
         Reiniciar

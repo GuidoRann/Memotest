@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const IMG = [
   "/src/images/cartas/cristal.png",
@@ -43,7 +44,7 @@ export default function Board() {
   };
 
   return (
-    <div className="h-screen flex flex-col gap-5 items-center bg-[url('/src/images/fondo/magic.png')] bg-cover">
+    <div className="h-screen flex flex-col  items-center bg-[url('/src/images/fondo/magic.png')] bg-cover">
       <Navbar />
       <div className="w-2/5 flex flex-col bg-yellow-100 items-center rounded-xl p-2">
         <ul className="grid grid-cols-5 gap-2 rounded-md ">
@@ -81,6 +82,7 @@ export default function Board() {
       >
         Reiniciar
       </button>
+      <Footer />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 export default function Landing() {
@@ -14,6 +15,7 @@ export default function Landing() {
           JUGAR
         </button>
       </div>
+      <Footer />
     </div>
   );
 }

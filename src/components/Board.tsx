@@ -41,8 +41,10 @@ export default function Board() {
   return (
     <div className="h-screen flex flex-col justify-between items-center bg-[url('/images/fondo/magic.png')] bg-cover">
       <Navbar />
-      <div className="w-2/5 flex flex-col bg-yellow-200 items-center rounded-xl p-2">
-        <ul className="grid grid-cols-5 gap-2 rounded-md ">
+      <div className="w-2/5 flex flex-col text-white bg-teal-600 items-center rounded-lg p-2">
+        <p className="pb-2 pt-1 ">Intentos:</p>
+        <p className="pb-4 ">Tiempo:</p>
+        <ul className="grid grid-cols-5 gap-2 rounded-md">
           {IMG.map((image) => {
             const [, url] = image.split("|");
 
@@ -53,13 +55,17 @@ export default function Board() {
                   selected.length < 2 &&
                   setSelected((selected) => selected.concat(image))
                 }
-                className="[transform-style: preserve-3d] transition-all duration-500"
+                className="[transform-style: preserve-3d] transition-all duration-500 rounded-xl"
               >
                 {selected.includes(image) || guessed.includes(image) ? (
-                  <img className={`max-w-full h-auto`} alt="icon" src={url} />
+                  <img
+                    className="max-w-full h-auto rounded-lg"
+                    alt="icon"
+                    src={url}
+                  />
                 ) : (
                   <img
-                    className={`max-w-full cursor-pointer h-auto ${selected ? "" : "rotate-[180deg]"}`}
+                    className="max-w-full cursor-pointer h-auto rounded-lg"
                     alt="icon"
                     src="/images/cartas/oculto.png"
                   />
@@ -69,14 +75,14 @@ export default function Board() {
           })}
         </ul>
       </div>
-      <button
+      {/* <button
         className="flex items-center bg-blue-500 text-white gap-1 px-4 py-2 cursor-pointer font-semibold tracking-widest rounded-md hover:bg-blue-400 duration-300 hover:gap-2 hover:translate-x-3"
         onClick={() => {
           location.reload();
         }}
       >
         Reiniciar
-      </button>
+      </button> */}
       <Footer />
     </div>
   );

@@ -20,6 +20,8 @@ const IMG = [
 export default function Board() {
   const [selected, setSelected] = useState<String[]>([]);
   const [guessed, setGuessed] = useState<String[]>([]);
+  const [times, setTimes] = useState<number>(0);
+  const [clock, setClock] = useState<number>(0);
 
   useEffect(() => {
     if (selected.length === 2) {
@@ -28,6 +30,7 @@ export default function Board() {
       }
 
       setTimeout(() => setSelected([]), 500);
+      setTimes(times + 1);
     }
   }, [selected]);
 
@@ -41,9 +44,25 @@ export default function Board() {
   return (
     <div className="h-screen flex flex-col justify-between items-center bg-[url('/images/fondo/magic.png')] bg-cover">
       <Navbar />
-      <div className="w-2/5 flex flex-col text-white bg-teal-600 items-center rounded-lg p-2">
-        <p className="pb-2 pt-1 ">Intentos:</p>
-        <p className="pb-4 ">Tiempo:</p>
+      <div className="w-2/5 text-white bg-teal-600 rounded-lg p-2">
+        <div className="flex flex-row">
+          <div className="w-1/2 flex justify-center items-center">
+            <button
+              className="flex justify-center w-20 bg-blue-500 text-white p-1 cursor-pointer font-semibold rounded-md hover:bg-blue-400 duration-300"
+              onClick={() => {
+                location.reload();
+              }}
+            >
+              Reiniciar
+            </button>
+          </div>
+          <div className="w-1/2 flex flex-col justify-center items-center">
+            <p className="p-1">
+              Intentos: <span>{times}</span>
+            </p>
+            <p className="p-1">Tiempo:</p>
+          </div>
+        </div>
         <ul className="grid grid-cols-5 gap-2 rounded-md">
           {IMG.map((image) => {
             const [, url] = image.split("|");
@@ -75,14 +94,6 @@ export default function Board() {
           })}
         </ul>
       </div>
-      {/* <button
-        className="flex items-center bg-blue-500 text-white gap-1 px-4 py-2 cursor-pointer font-semibold tracking-widest rounded-md hover:bg-blue-400 duration-300 hover:gap-2 hover:translate-x-3"
-        onClick={() => {
-          location.reload();
-        }}
-      >
-        Reiniciar
-      </button> */}
       <Footer />
     </div>
   );

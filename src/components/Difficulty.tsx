@@ -7,9 +7,9 @@ export default function Difficulty() {
         </p>
       </div>
       <div className="h-[50%] w-screen flex flex-col justify-start items-center">
-        <h3>Facil</h3>
-        <h3>Normal</h3>
-        <h3>Dificil</h3>
+        <p>Facil</p>
+        <p>Normal</p>
+        <p>Dificil</p>
       </div>
     </div>
   );

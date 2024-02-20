@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 
 export default function Landing() {
   return (
-    <div className="flex flex-col items-center h-screen text-center text-white bg-[url('/src/images/fondo/magic.png')] bg-cover">
+    <div className="flex flex-col items-center h-screen text-center text-white bg-[url('/images/fondo/magic.png')] bg-cover">
       <Navbar />
       <div className="flex flex-col items-center gap-5 justify-evenly h-screen w-screen">
         <Link

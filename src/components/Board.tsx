@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
 
 const IMG = [
-  "/src/images/cartas/cristal.png",
-  "/src/images/cartas/daga.png",
-  "/src/images/cartas/flechas.png",
-  "/src/images/cartas/hongo.png",
-  "/src/images/cartas/llave.png",
-  "/src/images/cartas/mano.png",
-  "/src/images/cartas/monedas.png",
-  "/src/images/cartas/pocion.png",
-  "/src/images/cartas/polilla.png",
-  "/src/images/cartas/sol.png",
+  "/images/cartas/cristal.png",
+  "/images/cartas/daga.png",
+  "/images/cartas/flechas.png",
+  "/images/cartas/hongo.png",
+  "/images/cartas/llave.png",
+  "/images/cartas/mano.png",
+  "/images/cartas/monedas.png",
+  "/images/cartas/pocion.png",
+  "/images/cartas/polilla.png",
+  "/images/cartas/sol.png",
 ]
   .flatMap((image) => [`a|${image}`, `b|${image}`])
   .sort(() => Math.random() - 0.5);
@@ -39,7 +40,7 @@ export default function Board() {
   }, [guessed]);
 
   return (
-    <div className="h-screen flex flex-col justify-between items-center bg-[url('/src/images/fondo/magic.png')] bg-cover">
+    <div className="h-screen flex flex-col justify-between items-center bg-[url('/images/fondo/magic.png')] bg-cover">
       <Navbar />
       <div className="w-2/5 flex flex-col bg-yellow-100 items-center rounded-xl p-2">
         <ul className="grid grid-cols-5 gap-2 rounded-md ">
@@ -61,7 +62,7 @@ export default function Board() {
                   <img
                     className={`max-w-full cursor-pointer h-auto ${selected ? "" : "rotate-[180deg]"}`}
                     alt="icon"
-                    src="/src/images/cartas/oculto.png"
+                    src="/images/cartas/oculto.png"
                   />
                 )}
               </li>

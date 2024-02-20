@@ -20,7 +20,6 @@ const IMG = [
 export default function Board() {
   const [selected, setSelected] = useState<String[]>([]);
   const [guessed, setGuessed] = useState<String[]>([]);
-  const [isActive, setIsActive] = useState<boolean>(false);
 
   useEffect(() => {
     if (selected.length === 2) {
@@ -38,10 +37,6 @@ export default function Board() {
       location.reload();
     }
   }, [guessed]);
-
-  // const handleFlip = () => {
-  //   setIsActive(!isActive);
-  // };
 
   return (
     <div className="h-screen flex flex-col justify-between items-center bg-[url('/src/images/fondo/magic.png')] bg-cover">

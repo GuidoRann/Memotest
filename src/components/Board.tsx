@@ -39,9 +39,9 @@ export default function Board() {
     }
   }, [guessed]);
 
-  const handleFlip = () => {
-    setIsActive(!isActive);
-  };
+  // const handleFlip = () => {
+  //   setIsActive(!isActive);
+  // };
 
   return (
     <div className="h-screen flex flex-col justify-between items-center bg-[url('/src/images/fondo/magic.png')] bg-cover">

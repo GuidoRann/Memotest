@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Modal from "./Modal";
 
 const IMG = [
   "/images/cartas/cristal.png",
@@ -23,11 +24,6 @@ IMG.forEach((imageUrl) => {
   img.src = imageUrl.split("|")[1];
 });
 
-const sort = () => {
-  IMG.flatMap((image) => [`a|${image}`, `b|${image}`]); //Crea una copia de la imagen y le agrega una letra a la URL para diferenciarlas
-  IMG.sort(() => Math.random() - 0.5); // Mezcla las tarjetas
-};
-
 export default function Board() {
   const [selected, setSelected] = useState<String[]>([]);
   const [guessed, setGuessed] = useState<String[]>([]);
@@ -35,12 +31,18 @@ export default function Board() {
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [timer, setTimer] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [endGameTime, setEndGameTime] = useState<String>("");
 
+  const handleSortCards = () => {
+    IMG.flatMap((image) => [`a|${image}`, `b|${image}`]); //Crea una copia de la imagen y le agrega una letra a la URL para diferenciarlas
+    IMG.sort(() => Math.random() - 0.5); // Mezcla las tarjetas
+  };
+
   // Reinicia el juego a default
-  const resetGame = () => {
-    sort();
+  const handleResetGame = () => {
+    handleSortCards();
     setSelected([]);
     setGuessed([]);
     setMinutes(0);
@@ -49,6 +51,10 @@ export default function Board() {
     setIsFinished(false);
     clearTimeout(timer);
     setTimer(0);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -86,7 +92,7 @@ export default function Board() {
 
   useEffect(() => {
     if (guessed.length === IMG.length) {
-      alert("Ganaste!");
+      setIsModalOpen(true);
       setEndGameTime(
         `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`
       );
@@ -99,12 +105,13 @@ export default function Board() {
   return (
     <div className="h-screen flex flex-col justify-between items-center bg-[url('/images/fondo/magic.png')] bg-cover">
       <Navbar />
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
       <div className="sm:w-1/5 md:w-2/5 text-white bg-teal-600 rounded-lg p-2">
         <div className="flex flex-row">
           <div className="w-1/3 flex flex-col gap-2 justify-center items-center">
             <button
               className="flex justify-center items-center mb-1 h-[30px] bg-blue-500 text-white p-1 cursor-pointer font-semibold rounded-md hover:bg-blue-400 duration-300"
-              onClick={resetGame}
+              onClick={handleResetGame}
             >
               Reiniciar
             </button>

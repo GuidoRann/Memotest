@@ -93,7 +93,7 @@ export default function Board() {
   return (
     <div className="h-screen flex flex-col justify-between items-center bg-[url('/images/fondo/magic.png')] bg-cover">
       <Navbar />
-      <div className="w-2/5 text-white bg-teal-600 rounded-lg p-2">
+      <div className="sm:w-1/5 md:w-2/5 text-white bg-teal-600 rounded-lg p-2">
         <div className="flex flex-row">
           <div className="w-1/3 flex flex-col gap-2 justify-center items-center">
             <button
@@ -118,7 +118,7 @@ export default function Board() {
             </p>
           </div>
         </div>
-        <ul className="grid grid-cols-5 gap-1 rounded-md">
+        <ul className="grid grid-cols-4 md:grid-cols-5 gap-1 rounded-md">
           {IMG.map((image) => {
             const [, url] = image.split("|");
 

@@ -8,10 +8,7 @@ export default function Navbar() {
         <a className="hover:text-sky-300 transition-colors delay-50" href="/">
           Inicio
         </a>
-        <Link
-          className="hover:text-sky-300 transition-colors delay-50"
-          to="/difficulty"
-        >
+        <Link className="hover:text-sky-300 transition-colors delay-50" to="">
           Dificultad
         </Link>
       </section>

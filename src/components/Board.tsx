@@ -17,6 +17,12 @@ const IMG = [
   .flatMap((image) => [`a|${image}`, `b|${image}`]) //Crea una copia de la imagen y le agrega una letra a la URL para diferenciarlas
   .sort(() => Math.random() - 0.5); // Mezcla las tarjetas
 
+// Precarga de imágenes al inicio de la aplicación
+IMG.forEach((imageUrl) => {
+  const img = new Image();
+  img.src = imageUrl.split("|")[1];
+});
+
 export default function Board() {
   const [selected, setSelected] = useState<String[]>([]);
   const [guessed, setGuessed] = useState<String[]>([]);

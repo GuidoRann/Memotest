@@ -23,6 +23,11 @@ IMG.forEach((imageUrl) => {
   img.src = imageUrl.split("|")[1];
 });
 
+const sort = () => {
+  IMG.flatMap((image) => [`a|${image}`, `b|${image}`]); //Crea una copia de la imagen y le agrega una letra a la URL para diferenciarlas
+  IMG.sort(() => Math.random() - 0.5); // Mezcla las tarjetas
+};
+
 export default function Board() {
   const [selected, setSelected] = useState<String[]>([]);
   const [guessed, setGuessed] = useState<String[]>([]);
@@ -35,6 +40,7 @@ export default function Board() {
 
   // Reinicia el juego a default
   const resetGame = () => {
+    sort();
     setSelected([]);
     setGuessed([]);
     setMinutes(0);

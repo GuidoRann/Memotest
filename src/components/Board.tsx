@@ -14,14 +14,50 @@ const IMG = [
   "/images/cartas/polilla.png",
   "/images/cartas/sol.png",
 ]
-  .flatMap((image) => [`a|${image}`, `b|${image}`])
-  .sort(() => Math.random() - 0.5);
+  .flatMap((image) => [`a|${image}`, `b|${image}`]) //Crea una copia de la imagen y le agrega una letra a la URL para diferenciarlas
+  .sort(() => Math.random() - 0.5); // Mezcla las tarjetas
 
 export default function Board() {
   const [selected, setSelected] = useState<String[]>([]);
   const [guessed, setGuessed] = useState<String[]>([]);
   const [times, setTimes] = useState<number>(0);
-  const [clock, setClock] = useState<number>(0);
+  const [minutes, setMinutes] = useState<number>(0);
+  const [seconds, setSeconds] = useState<number>(0);
+  const [timer, setTimer] = useState<number>(0);
+  const [isFinished, setIsFinished] = useState<boolean>(false);
+  const [endGameTime, setEndGameTime] = useState<String>("");
+
+  // Reinicia el juego a default
+  const resetGame = () => {
+    setSelected([]);
+    setGuessed([]);
+    setMinutes(0);
+    setSeconds(0);
+    setTimes(0);
+    setIsFinished(false);
+    clearTimeout(timer);
+    setTimer(0);
+  };
+
+  useEffect(() => {
+    const tick = () => {
+      setSeconds((prevSeconds) => {
+        if (prevSeconds === 59) {
+          setMinutes((prevMinutes) => prevMinutes + 1);
+          return 0;
+        } else {
+          return prevSeconds + 1;
+        }
+      });
+      // Llamar nuevamente a setTimeout después de 1 segundo
+      timer = setTimeout(tick, 1000);
+    };
+
+    // Iniciar el temporizador
+    let timer = setTimeout(tick, 1000);
+
+    return () => clearTimeout(timer); // Limpiar el temporizador al desmontar el componente
+  }, []);
 
   useEffect(() => {
     if (selected.length === 2) {
@@ -29,15 +65,22 @@ export default function Board() {
         setGuessed((guessed) => guessed.concat(selected));
       }
 
-      setTimeout(() => setSelected([]), 500);
-      setTimes(times + 1);
+      if (selected[0].split("|")[1] != selected[1].split("|")[1]) {
+        setTimes(times + 1);
+      }
+      setTimeout(() => setSelected([]), 700);
     }
   }, [selected]);
 
   useEffect(() => {
     if (guessed.length === IMG.length) {
       alert("Ganaste!");
-      location.reload();
+      setEndGameTime(
+        `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`
+      );
+      setIsFinished(true);
+
+      clearTimeout(timer);
     }
   }, [guessed]);
 
@@ -46,24 +89,41 @@ export default function Board() {
       <Navbar />
       <div className="w-2/5 text-white bg-teal-600 rounded-lg p-2">
         <div className="flex flex-row">
-          <div className="w-1/2 flex justify-center items-center">
+          <div className="w-1/3 flex flex-col gap-2 justify-center items-center">
             <button
-              className="flex justify-center w-20 bg-blue-500 text-white p-1 cursor-pointer font-semibold rounded-md hover:bg-blue-400 duration-300"
-              onClick={() => {
-                location.reload();
-              }}
+              className="flex justify-center items-center mb-1 h-[30px] bg-blue-500 text-white p-1 cursor-pointer font-semibold rounded-md hover:bg-blue-400 duration-300"
+              onClick={resetGame}
             >
               Reiniciar
             </button>
+            <button
+              className="flex justify-center items-center mb-2 h-[30px] bg-blue-500 text-white p-1 cursor-pointer font-semibold rounded-md hover:bg-blue-400 duration-300"
+              onClick={() => {
+                setEndGameTime(
+                  `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`
+                );
+                setIsFinished(true);
+              }}
+            >
+              Parar reloj
+            </button>
           </div>
-          <div className="w-1/2 flex flex-col justify-center items-center">
+          <div className="w-1/3 flex justify-center items-center">
+            <p>Dificultad:</p>
+          </div>
+          <div className="w-1/3 flex flex-col justify-center items-center">
             <p className="p-1">
               Intentos: <span>{times}</span>
             </p>
-            <p className="p-1">Tiempo:</p>
+            <p className="pb-2">
+              {!isFinished
+                ? `
+              Tiempo: ${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`
+                : `Tiempo: ${endGameTime}`}
+            </p>
           </div>
         </div>
-        <ul className="grid grid-cols-5 gap-2 rounded-md">
+        <ul className="grid grid-cols-5 gap-1 rounded-md">
           {IMG.map((image) => {
             const [, url] = image.split("|");
 

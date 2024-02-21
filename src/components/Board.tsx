@@ -102,17 +102,6 @@ export default function Board() {
             >
               Reiniciar
             </button>
-            <button
-              className="flex justify-center items-center mb-2 h-[30px] bg-blue-500 text-white p-1 cursor-pointer font-semibold rounded-md hover:bg-blue-400 duration-300"
-              onClick={() => {
-                setEndGameTime(
-                  `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`
-                );
-                setIsFinished(true);
-              }}
-            >
-              Parar reloj
-            </button>
           </div>
           <div className="w-1/3 flex justify-center items-center">
             <p>Dificultad:</p>

@@ -31,7 +31,7 @@ export default function Board() {
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [timer, setTimer] = useState<number>(0);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [endGameTime, setEndGameTime] = useState<String>("");
 
@@ -103,7 +103,7 @@ export default function Board() {
   }, [guessed]);
 
   return (
-    <div className="h-screen flex flex-col justify-between items-center bg-[url('/images/fondo/magic.png')] bg-cover">
+    <div className="h-screen flex flex-col justify-between items-center bg-[url('/images/fondo/magic.png')] font-poppins bg-cover">
       <Navbar />
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
       <div className="sm:w-1/5 md:w-2/5 text-white bg-teal-600 rounded-lg p-2">

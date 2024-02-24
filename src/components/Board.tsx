@@ -31,7 +31,7 @@ export default function Board() {
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [timer, setTimer] = useState<number>(0);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [endGameTime, setEndGameTime] = useState<String>("");
 

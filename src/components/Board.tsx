@@ -103,10 +103,10 @@ export default function Board() {
   }, [guessed]);
 
   return (
-    <div className="h-screen flex flex-col justify-between items-center bg-[url('/images/fondo/magic.png')] font-poppins bg-cover">
+    <div className="h-screen flex flex-col justify-between items-center font-bold font-poppins bg-gradient-to-br from-purple-900 via-cyan-900 to-indigo-900">
       <Navbar />
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
-      <div className="sm:w-1/5 md:w-2/5 text-white bg-teal-600 rounded-lg p-2">
+      <div className="sm:w-1/5 lg:w-2/5 text-white bg-indigo-900 rounded-lg p-2">
         <div className="flex flex-row">
           <div className="w-1/3 flex flex-col gap-2 justify-center items-center">
             <button
@@ -131,7 +131,7 @@ export default function Board() {
             </p>
           </div>
         </div>
-        <ul className="grid grid-cols-4 md:grid-cols-5 gap-1 rounded-md">
+        <ul className="grid grid-cols-4 lg:grid-cols-5 gap-1 rounded-md">
           {IMG.map((image) => {
             const [, url] = image.split("|");
 
@@ -142,7 +142,7 @@ export default function Board() {
                   selected.length < 2 &&
                   setSelected((selected) => selected.concat(image))
                 }
-                className="[transform-style: preserve-3d] transition-all duration-500 rounded-xl"
+                className="rounded-xl"
               >
                 {selected.includes(image) || guessed.includes(image) ? (
                   <img

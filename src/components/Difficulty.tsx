@@ -1,6 +1,6 @@
 export default function Difficulty() {
   return (
-    <div className="h-screen flex flex-col items-center bg-[url('/images/fondo/magic.png')] bg-cover text-white">
+    <div className="h-screen flex flex-col items-center bg-gradient-to-br from-purple-900 via-cyan-900 to-indigo-900 text-white">
       <div className="h-[50%]">
         <p className="h-full w-screen flex justify-center items-center">
           La dificultad modifica la cantidad de intentos para terminar el juego.

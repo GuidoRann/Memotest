@@ -103,7 +103,7 @@ export default function Board() {
   }, [guessed]);
 
   return (
-    <div className="h-screen flex flex-col justify-between items-center font-bold font-poppins bg-gradient-to-br from-purple-900 via-cyan-900 to-indigo-900">
+    <div className="h-screen flex flex-col justify-between items-center font-bold font-poppins bg-[#333] bg-[url('/images/fondo/concrete-dark.png')] bg-center">
       <Navbar />
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
       <div className="sm:w-1/5 lg:w-2/5 text-white bg-indigo-900 rounded-lg p-2">

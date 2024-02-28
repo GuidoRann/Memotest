@@ -29,6 +29,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
+    "tailwindcss-text-fill-stroke": "^1.1.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   }

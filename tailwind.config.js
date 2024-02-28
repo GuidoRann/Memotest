@@ -15,5 +15,5 @@ export default {
     },
   },
   darkMode: "class",
-  plugins: [animations],
+  plugins: [animations, require("tailwindcss-text-fill-stroke")()],
 };

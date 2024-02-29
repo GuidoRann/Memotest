@@ -103,23 +103,20 @@ export default function Board() {
   }, [guessed]);
 
   return (
-    <div className="h-screen flex flex-col justify-between items-center font-bold font-poppins bg-[#333] bg-[url('/images/fondo/concrete-dark.png')] bg-center">
+    <div className="h-screen flex flex-col justify-between items-center font-poppins bg-[#333] bg-[url('/images/fondo/concrete-dark.png')] bg-center">
       <Navbar />
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
-      <div className="sm:w-1/5 lg:w-2/5 text-white bg-indigo-900 rounded-lg p-2">
+      <div className=" lg:w-2/5 text-white bg-indigo-900 rounded-lg p-2 font-bold">
         <div className="flex flex-row">
           <div className="w-1/3 flex flex-col gap-2 justify-center items-center">
             <button
-              className="flex justify-center items-center mb-1 h-[30px] bg-blue-500 text-white p-1 cursor-pointer font-semibold rounded-md hover:bg-blue-400 duration-300"
+              className="flex justify-center items-center h-[30px] md:hover:translate-x-3 bg-blue-500 text-white p-1 cursor-pointer font-semibold rounded-md hover:bg-blue-400 duration-300"
               onClick={handleResetGame}
             >
               Reiniciar
             </button>
           </div>
-          <div className="w-1/3 flex justify-center items-center">
-            <p>Dificultad:</p>
-          </div>
-          <div className="w-1/3 flex flex-col justify-center items-center">
+          <div className="w-2/3 flex flex-col justify-center items-end pr-1">
             <p className="p-1">
               Intentos: <span>{times}</span>
             </p>
@@ -131,7 +128,7 @@ export default function Board() {
             </p>
           </div>
         </div>
-        <ul className="grid grid-cols-4 lg:grid-cols-5 gap-1 rounded-md">
+        <ul className="grid grid-cols-4 lg:grid-cols-5 gap-2 rounded-md">
           {IMG.map((image) => {
             const [, url] = image.split("|");
 

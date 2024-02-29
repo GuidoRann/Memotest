@@ -12,7 +12,7 @@ export default function Landing() {
         </h1>
         <Link
           to="/board"
-          className="flex justify-center bg-blue-600 text-white gap-1 px-8 py-3 cursor-pointer font-semibold tracking-widest rounded-md hover:bg-blue-400 duration-300 hover:gap-2 hover:translate-x-3"
+          className="flex justify-center bg-blue-600 text-white px-8 py-3 cursor-pointer font-semibold rounded-md hover:bg-blue-400 duration-300 hover:translate-x-3"
         >
           JUGAR
         </Link>

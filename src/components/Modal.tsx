@@ -1,9 +1,49 @@
+import confetti from "canvas-confetti";
+import { useEffect } from "react";
+
 interface modalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const defaults = {
+  spread: 360,
+  ticks: 50,
+  gravity: 0,
+  decay: 0.94,
+  startVelocity: 30,
+  colors: ["FFE400", "FFBD00", "E89400", "FFCA6C", "FDFFB8"],
+};
+
+function shoot() {
+  confetti({
+    ...defaults,
+    particleCount: 40,
+    scalar: 1.2,
+    shapes: ["star"],
+  });
+
+  confetti({
+    ...defaults,
+    particleCount: 10,
+    scalar: 0.75,
+    shapes: ["circle"],
+  });
+}
+
+
 export default function Modal({ isOpen, onClose }: modalProps) {
+
+  console.log(isOpen);
+
+  useEffect(()=> {
+    if(isOpen){
+      setTimeout(shoot, 0);
+      setTimeout(shoot, 50);
+      setTimeout(shoot, 100);
+      setTimeout(shoot, 200);
+    }
+  }, [isOpen])
   return (
     <>
       {isOpen && (

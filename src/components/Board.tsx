@@ -75,7 +75,7 @@ export default function Board() {
     let timer = setTimeout(tick, 1000);
 
     return () => clearTimeout(timer); // Limpiar el temporizador al desmontar el componente
-  }, []);
+  }, [!isFinished]);
 
   useEffect(() => {
     if (selected.length === 2) {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -25,15 +26,15 @@ IMG.forEach((imageUrl) => {
 });
 
 export default function Board() {
-  const [selected, setSelected] = useState<String[]>([]);
-  const [guessed, setGuessed] = useState<String[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
+  const [guessed, setGuessed] = useState<string[]>([]);
   const [times, setTimes] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [timer, setTimer] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
-  const [endGameTime, setEndGameTime] = useState<String>("");
+  const [endGameTime, setEndGameTime] = useState<string>("");
 
   const handleSortCards = () => {
     IMG.flatMap((image) => [`a|${image}`, `b|${image}`]); //Crea una copia de la imagen y le agrega una letra a la URL para diferenciarlas
@@ -106,9 +107,9 @@ export default function Board() {
     <div className="h-screen flex flex-col justify-between items-center font-poppins bg-[#045860] bg-[url('/images/fondo/concrete-dark.png')] bg-center">
       <Navbar />
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
-      <div className="w-4/5 md:w-2/5 text-white bg-gradient-to-b from-teal-800 to-teal-700 rounded-lg p-2 ">
+      <div className="w-[90%] xl:w-2/5 text-white bg-gradient-to-b from-teal-800 to-teal-700 rounded-lg p-3 md:text-2xl">
         <div className="flex flex-row">
-          <div className="w-1/3 flex flex-col gap-[1px] justify-center items-center">
+          <div className="w-1/3 flex flex-col gap-[1px] justify-center items-center ">
             <button
               className="flex justify-center bg-teal-600 text-white px-2 py-2 md:px-7 md:py-3 cursor-pointer font-semibold rounded-md hover:scale-110 duration-300"
               onClick={handleResetGame}
@@ -128,7 +129,7 @@ export default function Board() {
             </p>
           </div>
         </div>
-        <ul className="grid grid-cols-4 lg:grid-cols-5 gap-2 rounded-md">
+        <ul className="grid grid-cols-4 md:grid-cols-5 gap-2 rounded-md">
           {IMG.map((image) => {
             const [, url] = image.split("|");
 
